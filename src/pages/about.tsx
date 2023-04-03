@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { Layout } from '~components/Layout/Layout'
 
-const Homepage: NextPage = () => {
+const About: NextPage = () => {
   return (
     <Layout>
       <h2>About</h2>
@@ -9,4 +9,4 @@ const Homepage: NextPage = () => {
   )
 }
 
-export default Homepage
+export default About

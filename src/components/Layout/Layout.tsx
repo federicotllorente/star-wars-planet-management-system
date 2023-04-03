@@ -1,8 +1,18 @@
 import Head from 'next/head'
 import { ComponentPropsWithoutRef, FunctionComponent } from 'react'
+import classNames from 'classnames'
 import { Header } from '~components/Header/Header'
 
-export const Layout: FunctionComponent<ComponentPropsWithoutRef<'main'>> = ({
+type LayoutProps = {
+  noPadding?: boolean
+  className?: string
+}
+
+export const Layout: FunctionComponent<
+  ComponentPropsWithoutRef<'main'> & LayoutProps
+> = ({
+  noPadding = false,
+  className,
   children
 }) => {
   return (
@@ -14,7 +24,14 @@ export const Layout: FunctionComponent<ComponentPropsWithoutRef<'main'>> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="p-3 md:p-6">
+      <main
+        className={classNames(
+          {
+            'p-3 md:p-6': !noPadding
+          },
+          className
+        )}
+      >
         {children}
       </main>
     </div>
