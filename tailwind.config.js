@@ -12,7 +12,10 @@ module.exports = {
       xl: '1440px'
     },
     colors: {
-      black: '#05080B',
+      black: {
+        DEFAULT: '#05080B',
+        withOpacity: '#05080B40'
+      },
       blue: {
         dark: '#121620',
         light: '#202532'
@@ -55,6 +58,7 @@ module.exports = {
       2: '16px',
       2.5: '20px',
       3: '24px',
+      3.375: '27px',
       3.5: '28px',
       4: '32px',
       4.5: '36px',
@@ -128,6 +132,7 @@ module.exports = {
         '1/2': '50%'
       },
       height: {
+        0.375: '3px',
         2.5: '20px',
         5: '40px',
         6.25: '50px',
