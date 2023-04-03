@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Button } from '~components/Button/Button'
 import { ConditionalContainer } from '~components/ConditionalContainer/ConditionalContainer'
 import { FiltersDrawer } from '~components/FiltersDrawer/FiltersDrawer'
@@ -11,11 +11,22 @@ const Planets: NextPage = () => {
   const [showingFiltersDrawer, setShowingFiltersDrawer] = useState<boolean>(false)
   const breakpoint = useBreakpoint()
   const isMobile = useMemo(() => breakpoint === 'xs' || breakpoint === 'sm', [breakpoint])
+  const isDesktop = useMemo(() => breakpoint === 'md' || breakpoint === 'lg' || breakpoint === 'xl', [breakpoint])
+
+  useEffect(() => {
+    if (isDesktop) {
+      setShowingFiltersDrawer(true)
+    } else if (isMobile) {
+      setShowingFiltersDrawer(false)
+    }
+  }, [breakpoint])
 
   return (
-    <Layout noPadding className="flex">
-      <FiltersDrawer />
-      <div className="md:w-full p-3 flex flex-col md:flex-row gap-3 justify-between md:items-center">
+    <Layout noPadding className="flex ">
+      {showingFiltersDrawer && (
+        <FiltersDrawer setShowingFiltersDrawer={setShowingFiltersDrawer} />
+      )}
+      <div className="md:w-full p-3 flex flex-col md:flex-row gap-3 justify-between md:items-center md:border-l md:border-white-withOpacity">
         <Button className="w-fit" onClick={() => setShowingFiltersDrawer(v => !v)}>
           {isMobile
             ? 'Filters & sorting'

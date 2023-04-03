@@ -25,7 +25,10 @@ module.exports = {
         light: '#8B5750'
       },
       stone: '#666569',
-      white: '#FFFFFF',
+      white: {
+        DEFAULT: '#FFFFFF',
+        withOpacity: '#FFFFFF40'
+      },
       transparent: 'transparent'
     },
     fontFamily: {
@@ -120,7 +123,8 @@ module.exports = {
         '2/3': '66.66%',
         '6/10': '60%',
         '7/10': '70%',
-        '8/10': '80%'
+        '8/10': '80%',
+        modal: 'calc(100vw - 64px)'
       },
       minWidth: {
         6.75: '100px'
@@ -140,7 +144,8 @@ module.exports = {
         12.5: '100px',
         31.25: '250px',
         43.5: '348px',
-        '9/10': '90%'
+        '9/10': '90%',
+        modal: 'calc(100vh - 64px)'
       },
       minHeight: {
         12.5: '100px'
