@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { Button } from '~components/Button/Button'
@@ -59,3 +59,9 @@ const Planets: NextPage = () => {
 }
 
 export default Planets
+
+// TODO
+// export const getServerSideProps: GetServerSideProps = async context => {
+//   const planets = await getPlanets(context.locale)
+//   return { props: { planets } }
+// }

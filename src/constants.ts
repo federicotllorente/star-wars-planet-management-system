@@ -1,7 +1,4 @@
-export type HeaderItem = {
-  title: string
-  href: string
-}
+import { Filter, HeaderItem } from '~types'
 
 export const headerItems: HeaderItem[] = [
   {
@@ -17,12 +14,6 @@ export const headerItems: HeaderItem[] = [
     href: '/settings'
   }
 ]
-
-export type Filter = {
-  title: string
-  id: string
-  type: string
-}
 
 // TODO
 export const filterByGravity: Filter[] = [

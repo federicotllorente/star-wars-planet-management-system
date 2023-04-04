@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ComponentPropsWithoutRef, FunctionComponent } from 'react'
 import classNames from 'classnames'
-import { headerItems } from '~domains/constants'
+import { headerItems } from '~constants'
 
 export const Header: FunctionComponent<ComponentPropsWithoutRef<'header'>> = () => {
   const { pathname } = useRouter()

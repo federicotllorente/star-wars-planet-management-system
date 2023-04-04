@@ -4,7 +4,7 @@ import {
   FunctionComponent,
   SetStateAction
 } from 'react'
-import { Filter } from '~domains/constants'
+import { Filter } from '~types'
 import { FilterItem } from '~components/FilterItem/FilterItem'
 
 type FilterContainerProps = {

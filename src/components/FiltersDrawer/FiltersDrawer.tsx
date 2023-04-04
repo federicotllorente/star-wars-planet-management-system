@@ -8,7 +8,8 @@ import {
 } from 'react'
 import classNames from 'classnames'
 import { useBreakpoint } from '~helpers/useBreakpoint'
-import { Filter, filterByGravity, sortBy } from '~domains/constants'
+import { filterByGravity, sortBy } from '~constants'
+import { Filter } from '~types'
 import { FilterContainer } from '~components/FilterContainer/FilterContainer'
 
 type FiltersDrawerProps = {

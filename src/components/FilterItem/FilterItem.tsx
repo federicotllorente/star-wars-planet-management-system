@@ -7,7 +7,7 @@ import {
   useMemo
 } from 'react'
 import classNames from 'classnames'
-import { Filter } from '~domains/constants'
+import { Filter } from '~types'
 
 type FilterItemProps = {
   filter: Filter
