@@ -22,30 +22,37 @@ const Planets: NextPage = () => {
   }, [breakpoint])
 
   return (
-    <Layout noPadding className="flex ">
+    <Layout noPadding className="flex">
       {showingFiltersDrawer && (
         <FiltersDrawer setShowingFiltersDrawer={setShowingFiltersDrawer} />
       )}
-      <div className="md:w-full p-3 flex flex-col md:flex-row gap-3 justify-between md:items-center md:border-l md:border-white-withOpacity">
-        <Button className="w-fit" onClick={() => setShowingFiltersDrawer(v => !v)}>
-          {isMobile
-            ? 'Filters & sorting'
-            : showingFiltersDrawer
-              ? 'Collapse filters & sorting'
-              : 'Show filters & sorting'
-          }
-        </Button>
-        <ConditionalContainer shouldRenderContainer={isMobile} className="flex gap-3 items-center">
-          <span className="uppercase opacity-60">
-            All planets
-          </span>
-          <Link
-            href="/planets/add"
-            className="w-fit px-2 py-1 bg-transparent border border-beige-light uppercase transition hover:border-white hover:bg-white hover:text-black"
+      <div className="w-full p-3 md:border-l md:border-white-withOpacity">
+        <div className="md:w-full pb-3 flex flex-col sm:flex-row gap-3 justify-between sm:items-center">
+          <Button className="w-fit" onClick={() => setShowingFiltersDrawer(v => !v)}>
+            {isMobile
+              ? 'Filters & sorting'
+              : showingFiltersDrawer
+                ? 'Collapse filters & sorting'
+                : 'Show filters & sorting'
+            }
+          </Button>
+          <ConditionalContainer
+            shouldRenderContainer={breakpoint === 'xs'}
+            className="flex gap-3 items-center"
           >
-            Add a planet
-          </Link>
-        </ConditionalContainer>
+            <span className="uppercase opacity-60 text-center">
+              All planets
+            </span>
+            <Link
+              href="/planets/add"
+              className="w-fit px-2 py-1 bg-transparent border border-beige-light text-center uppercase transition hover:border-white hover:bg-white hover:text-black"
+            >
+              Add a planet
+            </Link>
+          </ConditionalContainer>
+        </div>
+
+        <h2>All planets</h2>
       </div>
     </Layout>
   )

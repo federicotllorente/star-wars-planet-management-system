@@ -21,27 +21,52 @@ export const headerItems: HeaderItem[] = [
 export type Filter = {
   title: string
   id: string
+  type: string
 }
+
+// TODO
+export const filterByGravity: Filter[] = [
+  {
+    title: 'Gravity value 1',
+    id: 'gravity-value-1',
+    type: 'gravity'
+  },
+  {
+    title: 'Gravity value 2',
+    id: 'gravity-value-2',
+    type: 'gravity'
+  },
+  {
+    title: 'Gravity value 3',
+    id: 'gravity-value-3',
+    type: 'gravity'
+  }
+]
 
 export const sortBy: Filter[] = [
   {
     title: 'Name',
-    id: 'sort-by-name'
+    id: 'name',
+    type: 'sort-by'
   },
   {
     title: 'Diameter',
-    id: 'sort-by-diameter'
+    id: 'diameter',
+    type: 'sort-by'
   },
   {
     title: 'Climate',
-    id: 'sort-by-climate'
+    id: 'climate',
+    type: 'sort-by'
   },
   {
     title: 'Terrain',
-    id: 'sort-by-terrain'
+    id: 'terrain',
+    type: 'sort-by'
   },
   {
     title: 'Population',
-    id: 'sort-by-population'
+    id: 'population',
+    type: 'sort-by'
   }
 ]

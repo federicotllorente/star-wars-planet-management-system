@@ -29,7 +29,7 @@ export const Header: FunctionComponent<ComponentPropsWithoutRef<'header'>> = () 
                 {title.toUpperCase()}
               </span>
               {pathname === href && (
-                <span className="absolute -bottom-3.375 inset-x-0 mx-auto bg-beige-light w-6.25 h-0.375"></span>
+                <span className="absolute -bottom-3.375 md:-bottom-8 inset-x-0 mx-auto bg-beige-light w-6.25 h-0.375"></span>
               )}
             </Link>
           </li>

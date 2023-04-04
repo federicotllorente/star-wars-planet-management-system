@@ -127,7 +127,8 @@ module.exports = {
         modal: 'calc(100vw - 64px)'
       },
       minWidth: {
-        6.75: '100px'
+        6.75: '100px',
+        32.5: '260px'
       },
       maxWidth: {
         27.5: '220px',
