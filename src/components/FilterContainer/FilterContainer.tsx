@@ -30,6 +30,7 @@ export const FilterContainer: FunctionComponent<
       <ul>
         {filters.map(filter => (
           <FilterItem
+            key={filter.id}
             filter={filter}
             activeFilters={activeFilters}
             setActiveFilters={setActiveFilters}

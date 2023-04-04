@@ -16,7 +16,8 @@
     "incremental": true,
     "paths": {
       "~components/*": ["./src/components/*"],
-      "~domains/*": ["./src/domains/*"],
+      "~domain/*": ["./src/domain/*"],
+      "~infra/*": ["./src/infra/*"],
       "~helpers/*": ["./src/helpers/*"],
       "~pages/*": ["./src/pages/*"],
       "~styles/*": ["./src/styles/*"],

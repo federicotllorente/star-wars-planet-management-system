@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react'
 
-export const useBreakpoint = ():
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | undefined => {
-  const [breakpoint, setBreakPoint] = useState<
-    'xs' | 'sm' | 'md' | 'lg' | 'xl' | undefined
-  >(undefined)
+type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+export const useBreakpoint = (): Breakpoints | null => {
+  const [breakpoint, setBreakPoint] = useState<Breakpoints | null>(null)
 
   const [windowSize, setWindowSize] = useState<{
     width: number
@@ -26,8 +20,8 @@ export const useBreakpoint = ():
 
   const handleResize = () => {
     setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: window.outerWidth,
+      height: window.outerHeight
     })
   }
 

@@ -47,7 +47,7 @@ export const FilterItem: FunctionComponent<
         name={filter.title}
         id={filter.id}
         checked={isFilterActive}
-        onClick={handleFilterClick}
+        onChange={handleFilterClick}
       />
       <label
         htmlFor={filter.id}

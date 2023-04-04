@@ -31,10 +31,8 @@ export const FiltersDrawer: FunctionComponent<
     <div
       className={classNames(
         'p-4 flex flex-col gap-4',
-        {
-          'fixed w-modal h-modal top-4 left-4 z-10 bg-gradient-to-b from-blue-light to-blue-dark': isMobile,
-          'w-1/3 min-w-32.5': isDesktop
-        }
+        'fixed w-modal h-modal top-4 left-4 z-10 bg-gradient-to-b from-blue-light to-blue-dark',
+        'md:static md:w-1/3 md:h-auto md:bg-none'
       )}
     >
       {isMobile && (
