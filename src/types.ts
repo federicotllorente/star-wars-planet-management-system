@@ -29,5 +29,3 @@ type Resident = {
   birthYear: string
   gender: string
 }
-
-export type SortingFilterId = 'name' | 'diameter' | 'climates' | 'terrains' | 'population'

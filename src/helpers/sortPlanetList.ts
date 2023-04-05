@@ -1,6 +1,6 @@
-import { Planet, SortingFilterId } from "~types"
+import { Planet } from "~types"
 
-export const sortPlanetList = (planetList: Planet[], sortingFilterId: SortingFilterId): Planet[] => {
+export const sortPlanetList = (planetList: Planet[], sortingFilterId: keyof Planet): Planet[] => {
   if (!planetList || !sortingFilterId) return []
 
   const newPlanetList = [...planetList]

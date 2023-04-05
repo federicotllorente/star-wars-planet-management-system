@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { getPlanets } from '~domain/planets/getPlanets'
 import { useBreakpoint } from '~helpers/useBreakpoint'
-import { Filter, Planet, SortingFilterId } from '~types'
+import { Filter, Planet } from '~types'
 import { Button } from '~components/Button/Button'
 import { ConditionalContainer } from '~components/ConditionalContainer/ConditionalContainer'
 import { FiltersDrawer } from '~components/FiltersDrawer/FiltersDrawer'
@@ -49,14 +49,22 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
     }
   }, [breakpoint])
 
-  const sortingFilter = useMemo(() => activeFilters.find(el => el.type === 'sort-by'), [activeFilters])
-
   useEffect(() => {
-    if (sortingFilter) {
-      setFilteredPlanetList(sortPlanetList(planetList, sortingFilter.id as SortingFilterId))
-    } else {
-      setFilteredPlanetList([]) // TODO
-    }
+    if (!activeFilters) return setFilteredPlanetList([])
+
+    let newFilteredPlanetList = activeFilters.length == 1 ? [...planetList] : [...filteredPlanetList]
+
+    activeFilters.forEach(filter => {
+      if (filter.type === 'sort-by') {
+        const sortedPlanetList = sortPlanetList(newFilteredPlanetList, filter.id as keyof Planet)
+        newFilteredPlanetList = sortedPlanetList
+      } else {
+        const filteredNewFilteredPlanetList = newFilteredPlanetList.filter(planet => planet[filter.type as keyof Planet].includes(filter.id))
+        newFilteredPlanetList = filteredNewFilteredPlanetList
+      }
+    })
+
+    setFilteredPlanetList(newFilteredPlanetList)
   }, [activeFilters])
 
   return (

@@ -15,22 +15,39 @@ export const headerItems: HeaderItem[] = [
   }
 ]
 
-// TODO
-export const filterByGravity: Filter[] = [
+export const filterByClimate: Filter[] = [
   {
-    title: 'Gravity value 1',
-    id: 'gravity-value-1',
-    type: 'gravity'
+    title: 'Arid',
+    id: 'arid',
+    type: 'climates'
   },
   {
-    title: 'Gravity value 2',
-    id: 'gravity-value-2',
-    type: 'gravity'
+    title: 'Temperate',
+    id: 'temperate',
+    type: 'climates'
   },
   {
-    title: 'Gravity value 3',
-    id: 'gravity-value-3',
-    type: 'gravity'
+    title: 'Hot',
+    id: 'hot',
+    type: 'climates'
+  }
+]
+
+export const filterByTerrain: Filter[] = [
+  {
+    title: 'Desert',
+    id: 'desert',
+    type: 'terrains'
+  },
+  {
+    title: 'Mountains',
+    id: 'mountains',
+    type: 'terrains'
+  },
+  {
+    title: 'Forests',
+    id: 'forests',
+    type: 'terrains'
   }
 ]
 

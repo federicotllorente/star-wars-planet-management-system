@@ -7,7 +7,7 @@ import {
 } from 'react'
 import classNames from 'classnames'
 import { useBreakpoint } from '~helpers/useBreakpoint'
-import { filterByGravity, sortBy } from '~constants'
+import { filterByClimate, filterByTerrain, sortBy } from '~constants'
 import { Filter } from '~types'
 import { FilterContainer } from '~components/FilterContainer/FilterContainer'
 
@@ -55,10 +55,18 @@ export const FiltersDrawer: FunctionComponent<
         )}
       </div>
 
-      {/* BY GRAVITY */}
+      {/* BY CLIMATE */}
       <FilterContainer
-        title='By gravity'
-        filters={filterByGravity}
+        title='By climate'
+        filters={filterByClimate}
+        activeFilters={activeFilters}
+        setActiveFilters={setActiveFilters}
+      />
+
+      {/* BY TERRAIN */}
+      <FilterContainer
+        title='By terrain'
+        filters={filterByTerrain}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
       />
