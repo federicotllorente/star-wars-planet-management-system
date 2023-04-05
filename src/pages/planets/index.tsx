@@ -52,14 +52,18 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
   useEffect(() => {
     if (!activeFilters) return setFilteredPlanetList([])
 
-    let newFilteredPlanetList = activeFilters.length == 1 ? [...planetList] : [...filteredPlanetList]
+    let newFilteredPlanetList = activeFilters.length == 1
+      ? [...planetList]
+      : [...filteredPlanetList]
 
     activeFilters.forEach(filter => {
       if (filter.type === 'sort-by') {
         const sortedPlanetList = sortPlanetList(newFilteredPlanetList, filter.id as keyof Planet)
         newFilteredPlanetList = sortedPlanetList
       } else {
-        const filteredNewFilteredPlanetList = newFilteredPlanetList.filter(planet => planet[filter.type as keyof Planet].includes(filter.id))
+        const filteredNewFilteredPlanetList = newFilteredPlanetList.filter(planet =>
+          planet[filter.type as keyof Planet].includes(filter.id)
+        )
         newFilteredPlanetList = filteredNewFilteredPlanetList
       }
     })
@@ -68,7 +72,7 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
   }, [activeFilters])
 
   return (
-    <Layout noPadding className="flex">
+    <Layout noPadding className={classNames('flex', { 'overflow-hidden': showingFiltersDrawer && isMobile })}>
       {showingFiltersDrawer && (
         <FiltersDrawer
           setShowingFiltersDrawer={setShowingFiltersDrawer}

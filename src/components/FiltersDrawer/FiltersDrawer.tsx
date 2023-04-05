@@ -10,6 +10,7 @@ import { useBreakpoint } from '~helpers/useBreakpoint'
 import { filterByClimate, filterByTerrain, sortBy } from '~constants'
 import { Filter } from '~types'
 import { FilterContainer } from '~components/FilterContainer/FilterContainer'
+import { Button } from '~components/Button/Button'
 
 type FiltersDrawerProps = {
   setShowingFiltersDrawer: Dispatch<SetStateAction<boolean>>
@@ -36,23 +37,24 @@ export const FiltersDrawer: FunctionComponent<
         'md:static md:w-1/3 md:h-auto md:bg-none'
       )}
     >
-      {isMobile && (
-        <button onClick={() => setShowingFiltersDrawer(false)}>
-          {'Close'}
-          {/* <CloseIcon /> */}
-        </button>
-      )}
-
       <div className="flex justify-between">
         <p className="uppercase opacity-60">Filters</p>
         {activeFilters.length > 0 && (
-          <button
-            className="uppercase text-xs opacity-60 underline transition hover:opacity-100"
+          <Button
+            variant="only-text"
             onClick={() => setActiveFilters([])}
           >
             Remove all
-          </button>
+          </Button>
         )}
+        {isMobile && (
+        <Button
+          variant="only-text"
+          onClick={() => setShowingFiltersDrawer(false)}
+        >
+          Close
+        </Button>
+      )}
       </div>
 
       {/* BY CLIMATE */}
