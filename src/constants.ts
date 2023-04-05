@@ -46,13 +46,13 @@ export const sortBy: Filter[] = [
     type: 'sort-by'
   },
   {
-    title: 'Climate',
-    id: 'climate',
+    title: 'Climates',
+    id: 'climates',
     type: 'sort-by'
   },
   {
-    title: 'Terrain',
-    id: 'terrain',
+    title: 'Terrains',
+    id: 'terrains',
     type: 'sort-by'
   },
   {

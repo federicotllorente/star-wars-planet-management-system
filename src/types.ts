@@ -17,3 +17,17 @@ export type Planet = {
   terrains: string[]
   climates: string[]
 }
+
+export type PlanetDetails = Planet & {
+  residentConnection: {
+    residents: Resident[]
+  }
+}
+
+type Resident = {
+  name: string
+  birthYear: string
+  gender: string
+}
+
+export type SortingFilterId = 'name' | 'diameter' | 'climates' | 'terrains' | 'population'

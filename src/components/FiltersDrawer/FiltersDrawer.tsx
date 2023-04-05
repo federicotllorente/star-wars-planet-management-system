@@ -4,7 +4,6 @@ import {
   FunctionComponent,
   SetStateAction,
   useMemo,
-  useState
 } from 'react'
 import classNames from 'classnames'
 import { useBreakpoint } from '~helpers/useBreakpoint'
@@ -14,15 +13,17 @@ import { FilterContainer } from '~components/FilterContainer/FilterContainer'
 
 type FiltersDrawerProps = {
   setShowingFiltersDrawer: Dispatch<SetStateAction<boolean>>
+  activeFilters: Filter[]
+  setActiveFilters: Dispatch<SetStateAction<Filter[]>>
 }
 
 export const FiltersDrawer: FunctionComponent<
   ComponentPropsWithoutRef<'div'> & FiltersDrawerProps
 > = ({
-  setShowingFiltersDrawer
+  setShowingFiltersDrawer,
+  activeFilters,
+  setActiveFilters
 }) => {
-  const [activeFilters, setActiveFilters] = useState<Filter[]>([])
-
   const breakpoint = useBreakpoint()
   const isMobile = useMemo(() => breakpoint === 'xs' || breakpoint === 'sm', [breakpoint])
   const isDesktop = useMemo(() => breakpoint === 'md' || breakpoint === 'lg' || breakpoint === 'xl', [breakpoint])

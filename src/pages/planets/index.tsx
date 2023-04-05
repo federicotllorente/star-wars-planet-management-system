@@ -1,20 +1,45 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { getPlanets } from '~domain/planets/getPlanets'
 import { useBreakpoint } from '~helpers/useBreakpoint'
-import { Planet } from '~types'
+import { Filter, Planet, SortingFilterId } from '~types'
 import { Button } from '~components/Button/Button'
 import { ConditionalContainer } from '~components/ConditionalContainer/ConditionalContainer'
 import { FiltersDrawer } from '~components/FiltersDrawer/FiltersDrawer'
 import { Layout } from '~components/Layout/Layout'
+import { sortPlanetList } from '~helpers/sortPlanetList'
+import { PlanetList } from '~components/PlanetList/PlanetList'
 
-const Planets: NextPage<{ planets: Planet[] }> = ({ planets }) => {
+const Planets: NextPage<{ planets: Planet[] }> = () => {
+  const [planetList, setPlanetList] = useState<Planet[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  
+  const [filteredPlanetList, setFilteredPlanetList] = useState<Planet[]>([])
+  const [activeFilters, setActiveFilters] = useState<Filter[]>([])
   const [showingFiltersDrawer, setShowingFiltersDrawer] = useState<boolean>(false)
+
   const breakpoint = useBreakpoint()
   const isMobile = useMemo(() => breakpoint === 'xs' || breakpoint === 'sm', [breakpoint])
   const isDesktop = useMemo(() => breakpoint === 'md' || breakpoint === 'lg' || breakpoint === 'xl', [breakpoint])
+
+  const fetchPlanetList = async () => {
+    setIsLoading(true)
+    const data = await getPlanets()
+
+    try {
+      setIsLoading(false)
+      if (data) setPlanetList(data)
+    } catch (err) {
+      setIsLoading(false)
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchPlanetList()
+  }, [])
 
   useEffect(() => {
     if (isDesktop) {
@@ -24,17 +49,31 @@ const Planets: NextPage<{ planets: Planet[] }> = ({ planets }) => {
     }
   }, [breakpoint])
 
+  const sortingFilter = useMemo(() => activeFilters.find(el => el.type === 'sort-by'), [activeFilters])
+
+  useEffect(() => {
+    if (sortingFilter) {
+      setFilteredPlanetList(sortPlanetList(planetList, sortingFilter.id as SortingFilterId))
+    } else {
+      setFilteredPlanetList([]) // TODO
+    }
+  }, [activeFilters])
+
   return (
     <Layout noPadding className="flex">
       {showingFiltersDrawer && (
-        <FiltersDrawer setShowingFiltersDrawer={setShowingFiltersDrawer} />
+        <FiltersDrawer
+          setShowingFiltersDrawer={setShowingFiltersDrawer}
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+        />
       )}
       <div className={classNames('p-4', {
         'w-full': !showingFiltersDrawer,
         'md:w-2/3 md:border-l md:border-white-withOpacity': showingFiltersDrawer
       })}>
         <div className="pb-4 flex flex-col md:flex-row gap-3 justify-between md:items-center">
-          <Button className="w-fit" onClick={() => setShowingFiltersDrawer(v => !v)}>
+          <Button className="w-fit" variant="only-text" onClick={() => setShowingFiltersDrawer(v => !v)}>
             {isMobile
               ? 'Filters & sorting'
               : showingFiltersDrawer
@@ -58,38 +97,18 @@ const Planets: NextPage<{ planets: Planet[] }> = ({ planets }) => {
           </ConditionalContainer>
         </div>
 
-        <div className="overflow-x-scroll">
-          <div className="w-122.5 flex flex-col">
-            <div className="pb-2 grid grid-cols-6 gap-3 uppercase">
-              <span>Name</span>
-              <span>ID</span>
-              <span>Diameter</span>
-              <span>Climates</span>
-              <span>Terrains</span>
-              <span>Population</span>
-            </div>
+        {isLoading && (
+          <span>Loading...</span>
+        )}
 
-            {planets.map(planet => (
-              <div key={planet.id} className="py-2 grid grid-cols-6 gap-3 border-t border-white-withOpacity">
-                <span>{planet.name}</span>
-                <span>{planet.id}</span>
-                <span>{planet.diameter}</span>
-                <span>{planet.climates.join(', ')}</span>
-                <span>{planet.terrains.join(', ')}</span>
-                <span>{planet.population}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {activeFilters.length ? (
+          <PlanetList planetList={filteredPlanetList} />
+        ) : (
+          <PlanetList planetList={planetList} />
+        )}
       </div>
     </Layout>
   )
 }
 
 export default Planets
-
-// TODO
-export const getServerSideProps: GetServerSideProps = async context => {
-  const planets = await getPlanets()
-  return { props: { planets } }
-}

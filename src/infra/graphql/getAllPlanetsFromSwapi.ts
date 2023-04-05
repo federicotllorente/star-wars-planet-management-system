@@ -2,7 +2,7 @@ import { gql } from "@apollo/client"
 import client from "~helpers/apolloClient"
 import { Planet } from "~types"
 
-export const getAllPlanetsFromSwapi = async (): Promise<Planet[]> => {
+export const getAllPlanetsFromSwapi = async (): Promise<Planet[] | undefined> => {
   const { data } = await client.query({
     query: gql`
       query AllPlanets {
@@ -20,5 +20,9 @@ export const getAllPlanetsFromSwapi = async (): Promise<Planet[]> => {
     `
   })
 
-  return data.allPlanets.planets
+  try {
+    return data.allPlanets.planets
+  } catch (err) {
+    console.log(err)
+  }
 }

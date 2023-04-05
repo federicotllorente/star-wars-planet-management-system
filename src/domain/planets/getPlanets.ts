@@ -1,14 +1,18 @@
 import { getAllPlanetsFromSwapi } from "~infra/graphql/getAllPlanetsFromSwapi"
+import {
+  getAllPlanetsFromLocalStorage,
+  saveAllPlanetsInLocalStorage
+} from "~infra/localStorage"
 
 export const getPlanets = async () => {
-  const allPlanetsData = await getAllPlanetsFromSwapi()
-  return allPlanetsData // TODO
-
-  // Check if data exists in local storage
-    // true
-      // Return that data
-    // false
-      // Get data from Swapi
-      // Save data in local storage
-      // Return that data (from local storage)
+  const allPlanetsDataFromLocalStorage = getAllPlanetsFromLocalStorage()
+  if (allPlanetsDataFromLocalStorage) {
+    return allPlanetsDataFromLocalStorage
+  } else {
+    const allPlanetsDataFromSwapi = await getAllPlanetsFromSwapi()
+    if (allPlanetsDataFromSwapi) {
+      saveAllPlanetsInLocalStorage(allPlanetsDataFromSwapi)
+      return allPlanetsDataFromSwapi
+    }
+  }
 }
