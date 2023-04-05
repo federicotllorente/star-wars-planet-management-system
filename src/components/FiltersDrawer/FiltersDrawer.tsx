@@ -27,7 +27,6 @@ export const FiltersDrawer: FunctionComponent<
 }) => {
   const breakpoint = useBreakpoint()
   const isMobile = useMemo(() => breakpoint === 'xs' || breakpoint === 'sm', [breakpoint])
-  const isDesktop = useMemo(() => breakpoint === 'md' || breakpoint === 'lg' || breakpoint === 'xl', [breakpoint])
 
   return (
     <div
@@ -37,7 +36,7 @@ export const FiltersDrawer: FunctionComponent<
         'md:static md:w-1/3 md:h-auto md:bg-none'
       )}
     >
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
         <p className="uppercase opacity-60">Filters</p>
         {activeFilters.length > 0 && (
           <Button
@@ -48,13 +47,14 @@ export const FiltersDrawer: FunctionComponent<
           </Button>
         )}
         {isMobile && (
-        <Button
-          variant="only-text"
-          onClick={() => setShowingFiltersDrawer(false)}
-        >
-          Close
-        </Button>
-      )}
+          <Button
+            variant="only-text"
+            className="absolute top-4.5 right-4 sm:static"
+            onClick={() => setShowingFiltersDrawer(false)}
+          >
+            Close
+          </Button>
+        )}
       </div>
 
       {/* BY CLIMATE */}

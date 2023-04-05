@@ -41,17 +41,18 @@ export const FilterItem: FunctionComponent<
   }, [activeFilters, setActiveFilters])
 
   return (
-    <li key={filter.id} className="flex gap-1">
+    <li key={filter.id} className="w-fit flex gap-1 hover:cursor-pointer">
       <input
         type="checkbox"
         name={filter.title}
         id={filter.id}
         checked={isFilterActive}
         onChange={handleFilterClick}
+        className="hover:cursor-pointer"
       />
       <label
         htmlFor={filter.id}
-        className={classNames({
+        className={classNames('hover:cursor-pointer', {
           'opacity-60': !isFilterActive,
           'opacity-80': isFilterActive
         })}

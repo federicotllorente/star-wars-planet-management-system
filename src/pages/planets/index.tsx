@@ -61,9 +61,10 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
         const sortedPlanetList = sortPlanetList(newFilteredPlanetList, filter.id as keyof Planet)
         newFilteredPlanetList = sortedPlanetList
       } else {
-        const filteredNewFilteredPlanetList = newFilteredPlanetList.filter(planet =>
-          planet[filter.type as keyof Planet].includes(filter.id)
-        )
+        const filteredNewFilteredPlanetList = newFilteredPlanetList.filter(planet => {
+          const propertyToFilterBy = planet[filter.type as keyof Planet]
+          Array.isArray(propertyToFilterBy) && propertyToFilterBy?.includes(filter.id as string)
+        })
         newFilteredPlanetList = filteredNewFilteredPlanetList
       }
     })
@@ -80,11 +81,11 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
           setActiveFilters={setActiveFilters}
         />
       )}
-      <div className={classNames('p-4', {
+      <div className={classNames({
         'w-full': !showingFiltersDrawer,
         'md:w-2/3 md:border-l md:border-white-withOpacity': showingFiltersDrawer
       })}>
-        <div className="pb-4 flex flex-col md:flex-row gap-3 justify-between md:items-center">
+        <div className="p-4 flex flex-col md:flex-row gap-3 justify-between md:items-center">
           <Button className="w-fit" variant="only-text" onClick={() => setShowingFiltersDrawer(v => !v)}>
             {isMobile
               ? 'Filters & sorting'

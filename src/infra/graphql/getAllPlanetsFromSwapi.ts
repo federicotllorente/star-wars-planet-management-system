@@ -14,6 +14,13 @@ export const getAllPlanetsFromSwapi = async (): Promise<Planet[] | undefined> =>
             diameter
             terrains
             climates
+            residentConnection {
+              residents {
+                name
+                birthYear
+                gender
+              }
+            }
           }
         }
       }

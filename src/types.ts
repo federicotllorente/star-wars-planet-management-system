@@ -16,10 +16,7 @@ export type Planet = {
   diameter: string
   terrains: string[]
   climates: string[]
-}
-
-export type PlanetDetails = Planet & {
-  residentConnection: {
+  residentConnection?: {
     residents: Resident[]
   }
 }
