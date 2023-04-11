@@ -9,7 +9,7 @@ import {
 import classNames from 'classnames'
 import { Filter } from '~types'
 
-type FilterItemProps = {
+export type FilterItemProps = {
   filter: Filter
   activeFilters: Filter[]
   setActiveFilters: Dispatch<SetStateAction<Filter[]>>
@@ -41,7 +41,11 @@ export const FilterItem: FunctionComponent<
   }, [activeFilters, setActiveFilters])
 
   return (
-    <li key={filter.id} className="w-fit flex gap-1 hover:cursor-pointer">
+    <li
+      key={filter.id}
+      className="w-fit flex gap-1 hover:cursor-pointer"
+      data-testid="filterItem"
+    >
       <input
         type="checkbox"
         name={filter.title}
@@ -49,6 +53,7 @@ export const FilterItem: FunctionComponent<
         checked={isFilterActive}
         onChange={handleFilterClick}
         className="hover:cursor-pointer"
+        data-testid="filterItemInput"
       />
       <label
         htmlFor={filter.id}
@@ -56,6 +61,7 @@ export const FilterItem: FunctionComponent<
           'opacity-60': !isFilterActive,
           'opacity-80': isFilterActive
         })}
+        data-testid="filterItemLabel"
       >
         {filter.title}
       </label>

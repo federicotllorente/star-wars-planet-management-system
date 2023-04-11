@@ -12,7 +12,7 @@ import { Filter } from '~types'
 import { FilterContainer } from '~components/FilterContainer/FilterContainer'
 import { Button } from '~components/Button/Button'
 
-type FiltersDrawerProps = {
+export type FiltersDrawerProps = {
   setShowingFiltersDrawer: Dispatch<SetStateAction<boolean>>
   activeFilters: Filter[]
   setActiveFilters: Dispatch<SetStateAction<Filter[]>>
@@ -35,6 +35,7 @@ export const FiltersDrawer: FunctionComponent<
         'fixed w-modal h-modal top-4 left-4 z-10 bg-gradient-to-b from-blue-light to-blue-dark',
         'md:static md:w-1/3 md:h-auto md:bg-none'
       )}
+      data-testid="filtersDrawer"
     >
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
         <p className="uppercase opacity-60">Filters</p>

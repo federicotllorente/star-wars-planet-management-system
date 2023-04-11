@@ -3,8 +3,9 @@ import {
   getAllPlanetsFromLocalStorage,
   saveAllPlanetsInLocalStorage
 } from "~infra/localStorage"
+import { Planet } from "~types"
 
-export const getPlanets = async () => {
+export const getPlanets = async (): Promise<Planet[] | undefined> => {
   const allPlanetsDataFromLocalStorage = getAllPlanetsFromLocalStorage()
   if (allPlanetsDataFromLocalStorage) {
     return allPlanetsDataFromLocalStorage

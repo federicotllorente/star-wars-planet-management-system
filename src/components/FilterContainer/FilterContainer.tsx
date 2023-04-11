@@ -7,7 +7,7 @@ import {
 import { Filter } from '~types'
 import { FilterItem } from '~components/FilterItem/FilterItem'
 
-type FilterContainerProps = {
+export type FilterContainerProps = {
   title: string
   filters: Filter[]
   activeFilters: Filter[]
@@ -25,7 +25,7 @@ export const FilterContainer: FunctionComponent<
   isOnlyOneItemSelectable = false
 }) => {
   return (
-    <div>
+    <div data-testid="filterContainer">
       <p className="pb-1 uppercase opacity-60">{title}</p>
       <ul>
         {filters.map(filter => (

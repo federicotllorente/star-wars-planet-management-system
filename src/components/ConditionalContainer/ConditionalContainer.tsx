@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, FunctionComponent } from 'react'
 
-type ConditionalContainerProps = {
+export type ConditionalContainerProps = {
   shouldRenderContainer: boolean
   className?: string
 }
@@ -13,7 +13,7 @@ export const ConditionalContainer: FunctionComponent<
   children
 }) =>
   shouldRenderContainer ? (
-    <div className={className}>
+    <div className={className} data-testid="conditionalContainer">
       {children}
     </div>
   ) : (
