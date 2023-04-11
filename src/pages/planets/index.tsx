@@ -5,11 +5,11 @@ import classNames from 'classnames'
 import { getPlanets } from '~domain/planets/getPlanets'
 import { useBreakpoint } from '~helpers/useBreakpoint'
 import { Filter, Planet } from '~types'
+import { sortPlanetList } from '~helpers/sortPlanetList'
 import { Button } from '~components/Button/Button'
 import { ConditionalContainer } from '~components/ConditionalContainer/ConditionalContainer'
 import { FiltersDrawer } from '~components/FiltersDrawer/FiltersDrawer'
 import { Layout } from '~components/Layout/Layout'
-import { sortPlanetList } from '~helpers/sortPlanetList'
 import { PlanetList } from '~components/PlanetList/PlanetList'
 
 const Planets: NextPage<{ planets: Planet[] }> = () => {
@@ -63,7 +63,7 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
       } else {
         const filteredNewFilteredPlanetList = newFilteredPlanetList.filter(planet => {
           const propertyToFilterBy = planet[filter.type as keyof Planet]
-          Array.isArray(propertyToFilterBy) && propertyToFilterBy?.includes(filter.id as string)
+          return Array.isArray(propertyToFilterBy) && propertyToFilterBy?.includes(filter.id as string)
         })
         newFilteredPlanetList = filteredNewFilteredPlanetList
       }
@@ -111,7 +111,9 @@ const Planets: NextPage<{ planets: Planet[] }> = () => {
         </div>
 
         {isLoading && (
-          <span>Loading...</span>
+          <span className="w-screen h-screen fixed flex justify-center items-center top-0 left-0 bg-black z-20 opacity-80">
+            Loading...
+          </span>
         )}
 
         {activeFilters.length ? (
