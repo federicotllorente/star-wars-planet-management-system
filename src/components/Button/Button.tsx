@@ -1,9 +1,9 @@
 import { ComponentPropsWithoutRef, FunctionComponent } from 'react'
 import classNames from 'classnames'
 
-type ButtonProps = {
+export type ButtonProps = {
   onClick: () => void
-  variant?: 'primary' | 'secondary' | 'only-text'
+  variant?: 'primary' | 'only-text'
   className?: string
 }
 
@@ -26,6 +26,7 @@ export const Button: FunctionComponent<
         className
       )}
       onClick={onClick}
+      data-testid={`button-${variant}`}
     >
       {children}
     </button>
