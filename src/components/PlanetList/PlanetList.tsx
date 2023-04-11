@@ -31,8 +31,12 @@ export const PlanetList: FunctionComponent<
               <span>{planet.name}</span>
               <span>{planet.id}</span>
               <span>{planet.diameter}</span>
-              <span>{planet.climates.join(', ')}</span>
-              <span>{planet.terrains.join(', ')}</span>
+              {Array.isArray(planet.climates) && (
+                <span>{planet.climates.join(', ')}</span>
+              )}
+              {Array.isArray(planet.terrains) && (
+                <span>{planet.terrains.join(', ')}</span>
+              )}
               <span>{planet.population}</span>
             </div>
           </Link>

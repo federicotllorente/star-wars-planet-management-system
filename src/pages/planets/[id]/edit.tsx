@@ -4,10 +4,10 @@ import { useRouter } from 'next/router'
 import { ChangeEventHandler, useEffect, useState } from 'react'
 import { Planet } from '~types'
 import { getPlanetDetailsFromLocalStorage } from '~infra/localStorage/getPlanetDetailsFromLocalStorage'
+import { savePlanetDetailsInLocalStorage } from '~infra/localStorage/savePlanetDetailsInLocalStorage'
+import NotFound from '~pages/404'
 import { Button } from '~components/Button/Button'
 import { Layout } from '~components/Layout/Layout'
-import NotFound from '~pages/404'
-import { savePlanetDetailsInLocalStorage } from '~infra/localStorage/savePlanetDetailsInLocalStorage'
 
 const EditPlanet: NextPage<{ planetId: string }> = ({ planetId }) => {
   const { push } = useRouter()
@@ -55,13 +55,19 @@ const EditPlanet: NextPage<{ planetId: string }> = ({ planetId }) => {
         </div>
       </div>
 
-      <form className="flex flex-col gap-2">
-        <input type="text" name="name" id="name" placeholder="Planet name" value={planetDetails.name} className="px-2 py-1 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
-        <input type="text" name="id" id="id" placeholder="ID" value={planetDetails.id} className="px-2 py-1 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
-        <input type="number" name="diameter" id="diameter" placeholder="Diameter" value={planetDetails.diameter} className="px-2 py-1 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
-        <input type="text" name="climates" id="climates" placeholder="Climates" value={planetDetails.climates.join(', ')} className="px-2 py-1 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
-        <input type="text" name="terrains" id="terrains" placeholder="Terrains" value={planetDetails.terrains.join(', ')} className="px-2 py-1 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
-        <input type="number" name="population" id="population" placeholder="Population" value={planetDetails.population} className="px-2 py-1 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
+      <form className="flex flex-col sm:grid sm:grid-cols-3 gap-2 sm:items-center">
+        <label htmlFor="name" className="col-start-1 col-end-2">Name</label>
+        <input type="text" name="name" id="name" placeholder="Planet name" value={planetDetails.name} className="px-2 py-1 col-start-2 col-end-4 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
+        <label htmlFor="id" className="col-start-1 col-end-2">ID</label>
+        <input type="text" name="id" id="id" placeholder="ID" value={planetDetails.id} className="px-2 py-1 col-start-2 col-end-4 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
+        <label htmlFor="diameter" className="col-start-1 col-end-2">Diameter</label>
+        <input type="number" name="diameter" id="diameter" placeholder="Diameter" value={planetDetails.diameter} className="px-2 py-1 col-start-2 col-end-4 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
+        <label htmlFor="climates" className="col-start-1 col-end-2">Climates (separated by commas)</label>
+        <input type="text" name="climates" id="climates" placeholder="Climates" value={planetDetails.climates.join(', ')} className="px-2 py-1 col-start-2 col-end-4 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
+        <label htmlFor="terrains" className="col-start-1 col-end-2">Terrains (separated by commas)</label>
+        <input type="text" name="terrains" id="terrains" placeholder="Terrains" value={planetDetails.terrains.join(', ')} className="px-2 py-1 col-start-2 col-end-4 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
+        <label htmlFor="population" className="col-start-1 col-end-2">Population</label>
+        <input type="number" name="population" id="population" placeholder="Population" value={planetDetails.population} className="px-2 py-1 col-start-2 col-end-4 bg-transparent border border-white-withOpacity" onChange={handleInputChange} />
       </form>
     </Layout>
   )

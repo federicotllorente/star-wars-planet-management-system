@@ -21,6 +21,11 @@ export type Planet = {
   }
 }
 
+export type PlanetToAdd = Omit<Planet, 'terrains' | 'climates'> & {
+  terrains: string
+  climates: string
+}
+
 type Resident = {
   name: string
   birthYear: string
