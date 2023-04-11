@@ -1,6 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# About
 
-## Getting Started
+This is a project made by [Federico Tejedor Llorente](https://www.federicotllorente.com/) with [Next.js](https://nextjs.org/) ([React](https://reactjs.org/)), [TypeScript](https://www.typescriptlang.org/docs/) and [TailwindCSS](https://tailwindcss.com/), and it was bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+This platform uses the [SWAPI GraphQL API](https://studio.apollographql.com/public/star-wars-swapi/home?variant=current) for fetching the initial data. Then you can add/create, edit and delete planets as you want. This is stored in your browsers local storage, since the initial data is stored there after is firstly fetched to the Star Wars API.
+
+You will see that the logic is organized in several folders like 'components', 'domain' and 'infra'. I tried to follow a DDD-ish architecture splitting the different types of functions into domiain-related ones (like the getPlanets function), infrastructure-related ones (like the GraphQL or Local Storage functions) and web/React components.
+
+I did not implemented [Redux](https://redux.js.org/) in this case because I didn't find it really useful for this case since it was planned as a simple and quickly developed app/platform.
+
+# Getting Started
 
 First, run the development server:
 
